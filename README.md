@@ -29,5 +29,5 @@ Without those Firebase variables, the deployed site runs in demo mode and stores
 ## Commands
 
 - `npm run dev` starts the local development server.
-- `npm run build` creates the production build.
+- `npm run build` creates the production build in `docs`.
 - `npm run preview` serves the production build locally.
