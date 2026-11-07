@@ -1,0 +1,54 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "learners": {
+          "$learnerId": {
+            ".validate": "newData.hasChildren(['name', 'grade', 'school', 'attendance', 'progress', 'goal', 'scores', 'updated'])",
+            "name": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 70"
+            },
+            "grade": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 20"
+            },
+            "school": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 100"
+            },
+            "attendance": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+            },
+            "progress": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+            },
+            "goal": {
+              ".validate": "newData.isString() && newData.val().length <= 120"
+            },
+            "updated": {
+              ".validate": "newData.isString() && newData.val().length <= 30"
+            },
+            "scores": {
+              ".validate": "newData.hasChildren(['Reading', 'Maths', 'Science'])",
+              "Reading": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+              },
+              "Maths": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+              },
+              "Science": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
